@@ -10,7 +10,7 @@ export const categories = [
       {
         id: 'creative-01',
         title: 'Direction Board',
-        description: 'Add images and videos directly inside this tab. Saved locally in your browser for quick portfolio staging.',
+        description: 'Backend-editable project. Add image paths to images and video paths to videos.',
         images: [],
         videos: []
       }

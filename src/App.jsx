@@ -112,7 +112,7 @@ export default function App() {
   }
 
   const audioRef = useRef(null)
-  const [audioEnabled, setAudioEnabled] = useState(false)
+  const [audioEnabled, setAudioEnabled] = useState(true)
   const [booted, setBooted] = useState(false)
   const [focusedIndex, setFocusedIndex] = useState(getInitialFocusedIndex())
   const [windows, setWindows] = useState([])
