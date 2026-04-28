@@ -9,9 +9,9 @@ export const categories = [
     projects: [
       {
         id: 'creative-01',
-        title: 'Direction Board',
-        description: 'Backend-editable project. Add image paths to images and video paths to videos.',
-        images: [],
+        title: 'Mars - Caine [feat. Cope]',
+        description: 'Creative directed the entirety of this project. Recorded the music, made the cover, directed and edited the music video.',
+        images: ['/images/graphic-design/thumbnails/Mars.png'],
         videos: []
       }
     ]
@@ -27,6 +27,9 @@ export const categories = [
       { id: 'photo-01', title: 'Marble Mustang', image: '/images/photography/covers/Marble Final.jpg', description: 'Shot of a 2023 Ford Mustang Mach 1, through a marble. Shot on a Canon Rebel T7.' },
       { id: 'photo-02', title: 'Splash', image: '/images/photography/covers/splash.png', description: 'A shot of water splashing out of a cup, like an advertisement, using fast shutter speed. Shot on a Canon Rebel T3.' },
       { id: 'photo-03', title: 'Pilot G-2', image: '/images/photography/covers/Macro.jpg', description: 'A shot of a Pilot G-2 gel pen, using a macro lens. Shot on a Canon Rebel T3.' },
+      { id: 'shoot-01', title: 'Metropolitan Museum of Art', images: ['/images/photography/covers/Met1.jpeg',
+        '/images/photography/covers/Met2.jpeg', '/images/photography/covers/Met3.jpeg'
+      ], description: 'Shots from the Metropolitan Museum of Art in New York, New York.' },
     ]
   },
   {
@@ -84,7 +87,9 @@ export const categories = [
     emoji: '▤',
     accent: 'dust',
     projects: [
-      { id: 'design-01', title: 'Poster One', image: '', description: 'Replace with your actual work.' }
+      { id: 'design-01', title: 'Mars by Caine - Cover Art', image: '/images/graphic-design/thumbnails/Mars.png', description: 'Created song cover art for "Mars" by Caine.' },
+      { id: 'design-02', title: 'Roblox Game Thumbnail', image: '/images/graphic-design/thumbnails/Roomtopia Thumbnail 1.png', description: 'Created thumbnail for "Roomtopia," a Roblox game.' },
+      { id: 'design-03', title: 'Blocks Pyramid', image: '/images/graphic-design/thumbnails/Blocks Skeleton.png', description: 'Created simplistic yet interesting tee-shirt design for "Blocks," a brand I used to run.' }
     ]
   },
   {
