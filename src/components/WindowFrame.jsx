@@ -11,8 +11,14 @@ import {
   ZoomIn,
   ZoomOut,
   RotateCcw,
+  Image as ImageIcon,
+  Film,
+  Trash2,
+  Upload,
 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
+
+const CREATIVE_DIRECTION_KEY = 'portfolio:creative-direction-media:v1'
 
 function getProjectMedia(project) {
   if (Array.isArray(project.images) && project.images.length) return project.images
@@ -358,7 +364,126 @@ function MarketingMixedList({ projects }) {
   )
 }
 
+function readFileAsDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload = () => resolve(reader.result)
+    reader.onerror = reject
+    reader.readAsDataURL(file)
+  })
+}
+
+function CreativeDirectionPane({ projects }) {
+  const [items, setItems] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem(CREATIVE_DIRECTION_KEY) || '[]')
+    } catch {
+      return []
+    }
+  })
+
+  useEffect(() => {
+    localStorage.setItem(CREATIVE_DIRECTION_KEY, JSON.stringify(items))
+  }, [items])
+
+  const addFiles = async (files, type) => {
+    const nextItems = await Promise.all(
+      Array.from(files || []).map(async (file) => ({
+        id: `${type}-${Date.now()}-${file.name}`,
+        type,
+        title: file.name.replace(/\.[^.]+$/, ''),
+        src: await readFileAsDataUrl(file),
+        createdAt: new Date().toISOString(),
+      }))
+    )
+
+    setItems((current) => [...nextItems, ...current])
+  }
+
+  const staticItems = projects.flatMap((project) => [
+    ...getProjectMedia(project).map((src, index) => ({
+      id: `${project.id}-image-${index}`,
+      type: 'image',
+      title: project.title,
+      description: project.description,
+      src,
+    })),
+    ...getProjectVideos(project).map((src, index) => ({
+      id: `${project.id}-video-${index}`,
+      type: 'video',
+      title: project.title,
+      description: project.description,
+      src,
+    })),
+  ])
+  const allItems = [...items, ...staticItems]
+
+  return (
+    <div className="creative-direction-pane">
+      <div className="creative-direction-toolbar">
+        <div>
+          <div className="project-title">Creative Direction</div>
+          <div className="project-description">Drop in visual references, campaign clips, edits, mood images, and direction boards.</div>
+        </div>
+
+        <div className="creative-upload-actions">
+          <label className="creative-upload-button">
+            <ImageIcon size={16} />
+            <span>Images</span>
+            <input type="file" accept="image/*" multiple onChange={(event) => addFiles(event.target.files, 'image')} />
+          </label>
+          <label className="creative-upload-button">
+            <Film size={16} />
+            <span>Videos</span>
+            <input type="file" accept="video/*" multiple onChange={(event) => addFiles(event.target.files, 'video')} />
+          </label>
+        </div>
+      </div>
+
+      {allItems.length ? (
+        <div className="creative-media-grid">
+          {allItems.map((item) => (
+            <article className="creative-media-card" key={item.id}>
+              {item.type === 'video' ? (
+                <VideoCard project={{ id: item.id, title: item.title, description: item.description, video: item.src }} />
+              ) : (
+                <div className="project-media-frame">
+                  <ZoomableImage src={item.src} alt={item.title || 'Creative direction image'} className="project-gallery-image" />
+                </div>
+              )}
+
+              <div className="creative-media-meta">
+                <div>
+                  {item.title ? <div className="project-title">{item.title}</div> : null}
+                  {item.description ? <div className="project-description">{item.description}</div> : null}
+                </div>
+                {items.some((saved) => saved.id === item.id) ? (
+                  <button
+                    type="button"
+                    className="square-action"
+                    onClick={() => setItems((current) => current.filter((saved) => saved.id !== item.id))}
+                    aria-label="Remove media"
+                  >
+                    <Trash2 size={16} />
+                  </button>
+                ) : null}
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div className="creative-empty-state">
+          <Upload size={22} />
+          <span>Add images or videos to build this direction board.</span>
+        </div>
+      )}
+    </div>
+  )
+}
+
 function WindowContent({ category }) {
+  if (category.id === 'creative-direction') return <CreativeDirectionPane projects={category.projects} />
+
   if (category.id === 'photography') return <PhotoGrid projects={category.projects} />
 
   if (category.id === 'editing') {

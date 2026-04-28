@@ -1,7 +1,7 @@
 export const siteConfig = {
   owner: 'Cole Timlin',
   tagline: 'creative',
-  firstFocusedCategoryId: 'photography',
+  firstFocusedCategoryId: 'creative-direction',
   socials: {
     instagram: 'https://instagram.com/coletimlin0',
     github: 'https://github.com/coletimlin',

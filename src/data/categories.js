@@ -1,5 +1,22 @@
 export const categories = [
   {
+    id: 'creative-direction',
+    title: 'Creative Direction',
+    description: 'Campaign concepts, visual worlds, references, videos, and images.',
+    icon: '/images/categories/graphics.png',
+    emoji: 'CD',
+    accent: 'soft-white',
+    projects: [
+      {
+        id: 'creative-01',
+        title: 'Direction Board',
+        description: 'Add images and videos directly inside this tab. Saved locally in your browser for quick portfolio staging.',
+        images: [],
+        videos: []
+      }
+    ]
+  },
+  {
     id: 'photography',
     title: 'Photography',
     description: 'Selected stills and shoots.',
