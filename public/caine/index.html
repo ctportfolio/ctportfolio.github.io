@@ -132,6 +132,11 @@
         height: 50%;
       }
 
+      nav:not(.socials) a {
+        aspect-ratio: auto;
+        height: clamp(240px, 45vh, 310px);
+      }
+
       @media (max-width: 720px) {
         body {
           background:
@@ -167,6 +172,10 @@
         iframe {
           height: 82px;
         }
+
+        nav:not(.socials) a {
+          height: 240px;
+        }
       }
 
       @media (max-width: 360px) {
@@ -176,6 +185,10 @@
 
         .socials {
           grid-template-columns: repeat(3, 46px);
+        }
+
+        nav:not(.socials) a {
+          height: 230px;
         }
       }
     </style>

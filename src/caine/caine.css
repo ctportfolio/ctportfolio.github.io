@@ -92,6 +92,11 @@
   min-height: 0;
 }
 
+.caine-grid:not(.caine-socials) .caine-button {
+  aspect-ratio: auto;
+  height: clamp(240px, 45vh, 310px);
+}
+
 .caine-button img {
   display: block;
   width: 54%;
@@ -157,6 +162,10 @@
   .caine-button-small {
     min-height: 0;
   }
+
+  .caine-grid:not(.caine-socials) .caine-button {
+    height: 240px;
+  }
 }
 
 @media (max-width: 360px) {
@@ -166,5 +175,9 @@
 
   .caine-socials {
     grid-template-columns: repeat(3, 46px);
+  }
+
+  .caine-grid:not(.caine-socials) .caine-button {
+    height: 230px;
   }
 }
