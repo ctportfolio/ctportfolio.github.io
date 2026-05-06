@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Caine official links, latest release, and music platforms.">
+  <title>Caine</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --red: #c51111;
+      --red-dark: #7d0909;
+      --text: #fff6f6;
+      --muted: rgba(255, 246, 246, 0.78);
+      --panel: rgba(6, 6, 6, 0.48);
+      --line: rgba(255, 255, 255, 0.18);
+      --shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.52)),
+        url("assets/comp-bg.png") center / cover no-repeat fixed;
+    }
+
+    main {
+      display: flex;
+      width: min(100%, 660px);
+      height: 100vh;
+      height: 100dvh;
+      margin: 0 auto;
+      padding: clamp(12px, 3vh, 30px) 18px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .links {
+      display: grid;
+      width: min(100%, 520px);
+      gap: clamp(10px, 1.7vh, 18px);
+      padding: clamp(14px, 2.7vh, 28px);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(7px);
+    }
+
+    .logo {
+      display: block;
+      width: min(78vw, 360px);
+      max-height: 20vh;
+      margin: 0 auto;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.72));
+    }
+
+    .release {
+      display: grid;
+      gap: 8px;
+    }
+
+    .release-title {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(0.72rem, 1.5vw, 0.86rem);
+      font-weight: 800;
+      letter-spacing: 0;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .player {
+      width: 100%;
+      height: clamp(88px, 13vh, 116px);
+      border: 0;
+      border-radius: 8px;
+      background: #111;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.38);
+    }
+
+    .button-grid {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .button-grid.social {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .button {
+      display: flex;
+      min-height: clamp(44px, 7vh, 58px);
+      padding: 0 14px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 8px;
+      color: var(--text);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04)),
+        linear-gradient(135deg, rgba(197, 17, 17, 0.82), rgba(60, 6, 6, 0.84));
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+      font-size: clamp(0.86rem, 2.6vw, 1rem);
+      font-weight: 850;
+      letter-spacing: 0;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: transform 160ms ease, border-color 160ms ease, filter 160ms ease;
+    }
+
+    .button.social-button {
+      min-height: clamp(38px, 6.2vh, 48px);
+      font-size: clamp(0.72rem, 2.3vw, 0.84rem);
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      border-color: rgba(255, 255, 255, 0.55);
+      filter: brightness(1.12);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .button:active {
+      transform: translateY(0);
+    }
+
+    @media (max-width: 720px) {
+      body {
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.48)),
+          url("assets/mobile.png") center / cover no-repeat fixed;
+      }
+
+      main {
+        padding: max(10px, env(safe-area-inset-top)) 14px max(10px, env(safe-area-inset-bottom));
+      }
+
+      .links {
+        width: min(100%, 430px);
+      }
+    }
+
+    @media (max-height: 640px) {
+      main {
+        align-items: start;
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+
+      .links {
+        gap: 8px;
+        padding: 10px;
+      }
+
+      .logo {
+        max-height: 16vh;
+      }
+
+      .player {
+        height: 82px;
+      }
+
+      .button {
+        min-height: 38px;
+      }
+
+      .button.social-button {
+        min-height: 34px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .button {
+        padding: 0 8px;
+        font-size: 0.76rem;
+      }
+
+      .button.social-button {
+        font-size: 0.66rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main aria-label="Caine links">
+    <section class="links">
+      <img class="logo" src="assets/caine-logo.png" alt="Caine">
+
+      <div class="release">
+        <p class="release-title">Recent Release</p>
+        <iframe
+          class="player"
+          title="Mars feat. Cope by Caine on SoundCloud"
+          scrolling="no"
+          allow="autoplay"
+          src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/static-83801875/mars-feat-cope&color=%23c51111&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false">
+        </iframe>
+      </div>
+
+      <nav aria-label="Social links" class="button-grid social">
+        <a class="button social-button" href="https://www.instagram.com/whocaine/" target="_blank" rel="noopener">Instagram</a>
+        <a class="button social-button" href="https://www.tiktok.com/@cainekss" target="_blank" rel="noopener">TikTok</a>
+        <a class="button social-button" href="https://www.youtube.com/@caine2kk" target="_blank" rel="noopener">YouTube</a>
+      </nav>
+
+      <nav aria-label="Music links" class="button-grid">
+        <a class="button" href="https://soundcloud.com/static-83801875" target="_blank" rel="noopener">SoundCloud</a>
+        <a class="button" href="https://open.spotify.com/search/Caine%20Mars%20feat%20Cope" target="_blank" rel="noopener">Spotify</a>
+      </nav>
+
+      <nav aria-label="More music links" class="button-grid">
+        <a class="button" href="https://music.apple.com/us/search?term=Caine%20Mars%20feat%20Cope" target="_blank" rel="noopener">Apple Music</a>
+        <a class="button" href="https://music.amazon.com/search/Caine%20Mars%20feat%20Cope" target="_blank" rel="noopener">Amazon Music</a>
+      </nav>
+    </section>
+  </main>
+</body>
+</html>
