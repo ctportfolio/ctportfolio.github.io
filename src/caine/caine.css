@@ -19,9 +19,6 @@ body {
 }
 
 .caine-page {
-  --page-pad-x: clamp(8px, 2.5vw, 18px);
-  --page-pad-y: clamp(6px, 1.5dvh, 16px);
-
   width: 100vw;
   height: 100vh;
   height: 100dvh;
@@ -31,7 +28,7 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: var(--page-pad-y) var(--page-pad-x);
+  padding: clamp(6px, 1.5dvh, 14px) clamp(10px, 3vw, 18px);
   color: #fff6f6;
   font-family: Arial, Helvetica, sans-serif;
   background:
@@ -40,67 +37,64 @@ body {
 }
 
 .caine-panel {
-  container-type: size;
-
-  --panel-gap: min(1.05cqh, 9px);
-  --release-gap: min(0.65cqh, 6px);
-  --grid-gap: min(1.35cqw, 10px);
-
-  --logo-width: min(62cqw, 390px);
-  --logo-height: min(17cqh, 145px);
-
-  --player-width: min(88cqw, 430px);
-  --player-height: min(10.5cqh, 96px);
-
-  --main-button-size: min(39cqw, 15.7cqh);
-  --social-button-size: min(13cqw, 6.7cqh);
-
   width: min(100%, 520px);
-  height: calc(100dvh - (var(--page-pad-y) * 2));
-  max-width: calc(100vw - (var(--page-pad-x) * 2));
-  max-height: calc(100dvh - (var(--page-pad-y) * 2));
+  height: auto;
+  max-width: calc(100vw - 20px);
+  max-height: calc(100dvh - 12px);
 
-  display: grid;
-  grid-template-rows: auto auto auto auto auto;
-  justify-items: center;
-  align-content: center;
-  gap: var(--panel-gap);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-  padding: min(2.3cqh, 20px) min(4cqw, 22px);
+  gap: clamp(6px, 0.9dvh, 10px);
+  padding: clamp(10px, 1.6dvh, 18px);
+
   margin: 0 auto;
+  overflow: hidden;
+
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 8px;
   background: rgba(6, 6, 6, 0.48);
   box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(7px);
-  overflow: hidden;
 }
 
 .caine-logo {
   display: block;
-  width: var(--logo-width);
-  height: var(--logo-height);
+
+  width: min(82%, 400px);
+  height: clamp(82px, 15dvh, 145px);
   max-width: 100%;
-  margin: -1.4cqh auto -3.8cqh;
+
+  margin: clamp(-14px, -1.4dvh, -6px) auto clamp(-32px, -3.4dvh, -18px);
+
   object-fit: contain;
   object-position: center bottom;
+
+  transform: scale(1.08);
+  transform-origin: center bottom;
+
   filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.72));
 }
 
 .caine-release {
   width: 100%;
-  display: grid;
-  justify-items: center;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: var(--release-gap);
+  justify-content: center;
+  gap: clamp(4px, 0.6dvh, 8px);
   margin: 0 auto;
   overflow: hidden;
 }
 
 .caine-release p {
+  width: 100%;
   margin: 0;
   color: rgba(255, 246, 246, 0.78);
-  font-size: min(3.7cqw, 1.55cqh, 0.86rem);
+  font-size: clamp(0.68rem, 1.35dvh, 0.86rem);
   line-height: 1;
   font-weight: 800;
   letter-spacing: 0;
@@ -110,12 +104,16 @@ body {
 
 .caine-player {
   display: block;
-  width: var(--player-width) !important;
-  max-width: var(--player-width) !important;
-  min-width: 0 !important;
-  height: var(--player-height);
-  max-height: var(--player-height);
+
+  width: min(100%, 430px);
+  max-width: 100%;
+  min-width: 0;
+
+  height: clamp(54px, 9dvh, 96px);
+  max-height: 96px;
+
   margin: 0 auto;
+
   border: 0;
   border-radius: 8px;
   background: #111;
@@ -124,41 +122,54 @@ body {
 }
 
 .caine-grid {
-  display: grid;
-  width: calc((var(--main-button-size) * 2) + var(--grid-gap));
+  width: min(74%, 390px);
   max-width: 100%;
-  grid-template-columns: repeat(2, var(--main-button-size));
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   justify-content: center;
-  justify-items: center;
+  justify-items: stretch;
   align-items: center;
-  gap: var(--grid-gap);
+
+  gap: clamp(8px, 1.25dvh, 12px);
   margin: 0 auto;
+
   overflow: hidden;
 }
 
 .caine-socials {
-  width: calc((var(--social-button-size) * 3) + (var(--grid-gap) * 2));
-  grid-template-columns: repeat(3, var(--social-button-size));
+  width: min(46%, 220px);
+  max-width: 100%;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(8px, 1.15dvh, 12px);
 }
 
 .caine-button {
-  aspect-ratio: 1;
+  aspect-ratio: 1 / 1;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   width: 100%;
   min-width: 0;
   min-height: 0;
+
   padding: 0;
+
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 8px;
   color: #fff6f6;
+
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04)),
     linear-gradient(135deg, rgba(197, 17, 17, 0.82), rgba(60, 6, 6, 0.84));
+
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
   text-decoration: none;
   transition: transform 160ms ease, border-color 160ms ease, filter 160ms ease;
+
   overflow: hidden;
 }
 
@@ -167,15 +178,15 @@ body {
 }
 
 .caine-grid:not(.caine-socials) .caine-button {
-  width: var(--main-button-size);
-  height: var(--main-button-size);
-  aspect-ratio: 1;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
 }
 
 .caine-button img {
   display: block;
-  width: 52%;
-  height: 52%;
+  width: 54%;
+  height: 54%;
   object-fit: contain;
   object-position: center;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.48));
@@ -200,10 +211,7 @@ body {
 
 @media (max-width: 720px) {
   .caine-page {
-    --page-pad-x: 14px;
-    --page-pad-y: max(6px, env(safe-area-inset-top), env(safe-area-inset-bottom));
-
-    padding: max(6px, env(safe-area-inset-top)) var(--page-pad-x) max(6px, env(safe-area-inset-bottom));
+    padding: max(6px, env(safe-area-inset-top)) 14px max(6px, env(safe-area-inset-bottom));
     background:
       linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.48)),
       url('/images/caine/mobile.png') center / cover no-repeat fixed;
@@ -211,91 +219,158 @@ body {
 
   .caine-panel {
     width: min(100%, 430px);
-
-    --logo-width: 66cqw;
-    --logo-height: 17cqh;
-
-    --player-width: 90cqw;
-    --player-height: 10.2cqh;
-
-    --main-button-size: min(40.5cqw, 15.2cqh);
-    --social-button-size: min(13.5cqw, 6.5cqh);
-
-    --panel-gap: 0.95cqh;
-    --grid-gap: 2.3cqw;
+    max-width: calc(100vw - 28px);
+    gap: clamp(6px, 0.85dvh, 9px);
+    padding: clamp(9px, 1.35dvh, 14px);
   }
 
   .caine-logo {
-    margin: -1.5cqh auto -4.2cqh;
+    width: min(86%, 360px);
+    height: clamp(84px, 14.5dvh, 130px);
+    margin-top: clamp(-14px, -1.4dvh, -8px);
+    margin-bottom: clamp(-34px, -3.5dvh, -20px);
+    transform: scale(1.12);
+  }
+
+  .caine-player {
+    width: min(100%, 390px);
+    height: clamp(52px, 8.3dvh, 82px);
+  }
+
+  .caine-grid {
+    width: 74%;
+  }
+
+  .caine-socials {
+    width: 46%;
   }
 }
 
 @media (max-height: 740px) {
+  .caine-page {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
   .caine-panel {
-    --logo-width: 65cqw;
-    --logo-height: 16cqh;
-
-    --player-height: 9.4cqh;
-
-    --main-button-size: min(40cqw, 14.2cqh);
-    --social-button-size: min(13cqw, 6.1cqh);
-
-    --panel-gap: 0.75cqh;
-    --release-gap: 0.45cqh;
-    --grid-gap: 1.9cqw;
+    gap: clamp(5px, 0.72dvh, 8px);
+    padding: clamp(8px, 1.2dvh, 12px);
   }
 
   .caine-logo {
-    margin: -1.5cqh auto -4.4cqh;
+    width: min(82%, 350px);
+    height: clamp(74px, 13dvh, 112px);
+    margin-top: clamp(-16px, -1.6dvh, -10px);
+    margin-bottom: clamp(-36px, -3.7dvh, -22px);
   }
 
   .caine-release p {
-    font-size: min(3.5cqw, 1.35cqh, 0.78rem);
+    font-size: clamp(0.64rem, 1.18dvh, 0.78rem);
+  }
+
+  .caine-player {
+    height: clamp(48px, 7.6dvh, 70px);
+  }
+
+  .caine-grid {
+    width: 70%;
+    gap: clamp(6px, 0.95dvh, 9px);
+  }
+
+  .caine-socials {
+    width: 43%;
+    gap: clamp(6px, 0.9dvh, 9px);
   }
 }
 
 @media (max-height: 640px) {
   .caine-panel {
-    --logo-width: 62cqw;
-    --logo-height: 14.5cqh;
-
-    --player-height: 8.4cqh;
-
-    --main-button-size: min(39cqw, 13.2cqh);
-    --social-button-size: min(12.5cqw, 5.5cqh);
-
-    --panel-gap: 0.62cqh;
-    --release-gap: 0.35cqh;
-    --grid-gap: 1.6cqw;
-
-    padding: min(1.6cqh, 12px) min(3.4cqw, 18px);
+    gap: 5px;
+    padding: 8px;
   }
 
   .caine-logo {
-    margin: -1.4cqh auto -4.2cqh;
+    width: min(78%, 330px);
+    height: clamp(64px, 12dvh, 94px);
+    margin-top: -14px;
+    margin-bottom: -34px;
+    transform: scale(1.08);
+  }
+
+  .caine-player {
+    height: clamp(44px, 7dvh, 60px);
+  }
+
+  .caine-grid {
+    width: 66%;
+    gap: 6px;
+  }
+
+  .caine-socials {
+    width: 40%;
+    gap: 6px;
   }
 }
 
 @media (max-width: 360px) {
   .caine-page {
-    --page-pad-x: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   .caine-panel {
-    --logo-width: 68cqw;
-    --logo-height: 16cqh;
-
-    --player-width: 91cqw;
-    --player-height: 9.4cqh;
-
-    --main-button-size: min(40cqw, 14.5cqh);
-    --social-button-size: min(13.2cqw, 6cqh);
-
-    --panel-gap: 0.75cqh;
-    --grid-gap: 1.8cqw;
+    max-width: calc(100vw - 20px);
+    padding: 8px;
   }
 
   .caine-logo {
-    margin: -1.3cqh auto -4cqh;
+    width: 86%;
+    height: clamp(70px, 13.5dvh, 104px);
+    margin-bottom: -32px;
+  }
+
+  .caine-player {
+    width: 100%;
+    height: clamp(46px, 7.5dvh, 64px);
+  }
+
+  .caine-grid {
+    width: 72%;
+  }
+
+  .caine-socials {
+    width: 45%;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .caine-panel {
+    width: min(100%, 700px);
+    max-height: calc(100dvh - 12px);
+    gap: 5px;
+    padding: 8px;
+  }
+
+  .caine-logo {
+    width: min(45%, 300px);
+    height: clamp(46px, 16dvh, 76px);
+    margin-top: -10px;
+    margin-bottom: -24px;
+    transform: scale(1.04);
+  }
+
+  .caine-player {
+    width: min(80%, 420px);
+    height: clamp(40px, 12dvh, 58px);
+  }
+
+  .caine-grid {
+    width: min(42%, 300px);
+    gap: 6px;
+  }
+
+  .caine-socials {
+    width: min(26%, 180px);
+    gap: 6px;
   }
 }
