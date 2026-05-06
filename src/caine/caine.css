@@ -22,13 +22,11 @@ body {
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  min-height: 0;
-  max-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: clamp(6px, 1.5dvh, 14px) clamp(10px, 3vw, 18px);
+  padding: clamp(10px, 2.5vw, 18px);
   color: #fff6f6;
   font-family: Arial, Helvetica, sans-serif;
   background:
@@ -38,21 +36,16 @@ body {
 
 .caine-panel {
   width: min(100%, 520px);
-  height: auto;
-  max-width: calc(100vw - 20px);
-  max-height: calc(100dvh - 12px);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  gap: clamp(6px, 0.9dvh, 10px);
-  padding: clamp(10px, 1.6dvh, 18px);
-
+  max-width: 100%;
+  max-height: calc(100dvh - (clamp(10px, 2.5vw, 18px) * 2));
+  display: grid;
+  grid-auto-rows: min-content;
+  justify-items: center;
+  align-content: start;
+  gap: clamp(8px, 1.2vh, 12px);
+  padding: clamp(10px, 2.2vw, 18px);
   margin: 0 auto;
   overflow: hidden;
-
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 8px;
   background: rgba(6, 6, 6, 0.48);
@@ -62,40 +55,30 @@ body {
 
 .caine-logo {
   display: block;
-
-  width: min(82%, 400px);
-  height: clamp(82px, 15dvh, 145px);
+  width: 64%;
   max-width: 100%;
-
-  margin: clamp(-14px, -1.4dvh, -6px) auto clamp(-32px, -3.4dvh, -18px);
-
+  height: auto;
+  margin: 0 auto -3%;
   object-fit: contain;
-  object-position: center bottom;
-
-  transform: scale(1.08);
-  transform-origin: center bottom;
-
   filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.72));
 }
 
 .caine-release {
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(4px, 0.6dvh, 8px);
+  width: 92%;
+  max-width: 92%;
+  min-width: 0;
+  display: grid;
+  justify-items: center;
+  gap: clamp(4px, 0.8vh, 8px);
   margin: 0 auto;
-  overflow: hidden;
 }
 
 .caine-release p {
   width: 100%;
   margin: 0;
   color: rgba(255, 246, 246, 0.78);
-  font-size: clamp(0.68rem, 1.35dvh, 0.86rem);
-  line-height: 1;
+  font-size: clamp(0.72rem, 1.5vw, 0.86rem);
+  line-height: 1.05;
   font-weight: 800;
   letter-spacing: 0;
   text-align: center;
@@ -104,16 +87,10 @@ body {
 
 .caine-player {
   display: block;
-
-  width: min(100%, 430px);
+  width: 100%;
   max-width: 100%;
   min-width: 0;
-
-  height: clamp(54px, 9dvh, 96px);
-  max-height: 96px;
-
-  margin: 0 auto;
-
+  height: clamp(68px, 10vw, 96px);
   border: 0;
   border-radius: 8px;
   background: #111;
@@ -122,54 +99,42 @@ body {
 }
 
 .caine-grid {
-  width: min(74%, 390px);
-  max-width: 100%;
-
+  width: 92%;
+  max-width: 92%;
+  min-width: 0;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   justify-content: center;
-  justify-items: stretch;
-  align-items: center;
-
-  gap: clamp(8px, 1.25dvh, 12px);
+  align-items: stretch;
+  gap: 2.8%;
   margin: 0 auto;
-
-  overflow: hidden;
 }
 
 .caine-socials {
-  width: min(46%, 220px);
-  max-width: 100%;
-
+  width: 54%;
+  max-width: 54%;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(8px, 1.15dvh, 12px);
+  gap: 4%;
 }
 
 .caine-button {
-  aspect-ratio: 1 / 1;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   width: 100%;
   min-width: 0;
   min-height: 0;
-
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0;
-
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 8px;
   color: #fff6f6;
-
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04)),
     linear-gradient(135deg, rgba(197, 17, 17, 0.82), rgba(60, 6, 6, 0.84));
-
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
   text-decoration: none;
   transition: transform 160ms ease, border-color 160ms ease, filter 160ms ease;
-
   overflow: hidden;
 }
 
@@ -178,8 +143,6 @@ body {
 }
 
 .caine-grid:not(.caine-socials) .caine-button {
-  width: 100%;
-  height: auto;
   aspect-ratio: 1 / 1;
 }
 
@@ -188,7 +151,6 @@ body {
   width: 54%;
   height: 54%;
   object-fit: contain;
-  object-position: center;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.48));
 }
 
@@ -211,7 +173,7 @@ body {
 
 @media (max-width: 720px) {
   .caine-page {
-    padding: max(6px, env(safe-area-inset-top)) 14px max(6px, env(safe-area-inset-bottom));
+    padding: max(10px, env(safe-area-inset-top)) 14px max(10px, env(safe-area-inset-bottom));
     background:
       linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.48)),
       url('/images/caine/mobile.png') center / cover no-repeat fixed;
@@ -219,158 +181,104 @@ body {
 
   .caine-panel {
     width: min(100%, 430px);
-    max-width: calc(100vw - 28px);
-    gap: clamp(6px, 0.85dvh, 9px);
-    padding: clamp(9px, 1.35dvh, 14px);
   }
 
   .caine-logo {
-    width: min(86%, 360px);
-    height: clamp(84px, 14.5dvh, 130px);
-    margin-top: clamp(-14px, -1.4dvh, -8px);
-    margin-bottom: clamp(-34px, -3.5dvh, -20px);
-    transform: scale(1.12);
+    width: 66%;
+    margin-bottom: -4%;
   }
 
-  .caine-player {
-    width: min(100%, 390px);
-    height: clamp(52px, 8.3dvh, 82px);
-  }
-
+  .caine-release,
   .caine-grid {
-    width: 74%;
+    width: 94%;
+    max-width: 94%;
   }
 
   .caine-socials {
-    width: 46%;
+    width: 56%;
+    max-width: 56%;
+  }
+
+  .caine-player {
+    height: clamp(62px, 9vw, 86px);
   }
 }
 
 @media (max-height: 740px) {
-  .caine-page {
-    padding-top: 6px;
-    padding-bottom: 6px;
-  }
-
   .caine-panel {
-    gap: clamp(5px, 0.72dvh, 8px);
-    padding: clamp(8px, 1.2dvh, 12px);
+    gap: 8px;
+    padding: 10px;
   }
 
   .caine-logo {
-    width: min(82%, 350px);
-    height: clamp(74px, 13dvh, 112px);
-    margin-top: clamp(-16px, -1.6dvh, -10px);
-    margin-bottom: clamp(-36px, -3.7dvh, -22px);
+    width: 60%;
+    margin-bottom: -4%;
   }
 
-  .caine-release p {
-    font-size: clamp(0.64rem, 1.18dvh, 0.78rem);
-  }
-
-  .caine-player {
-    height: clamp(48px, 7.6dvh, 70px);
-  }
-
+  .caine-release,
   .caine-grid {
-    width: 70%;
-    gap: clamp(6px, 0.95dvh, 9px);
+    width: 90%;
+    max-width: 90%;
   }
 
   .caine-socials {
-    width: 43%;
-    gap: clamp(6px, 0.9dvh, 9px);
+    width: 52%;
+    max-width: 52%;
+  }
+
+  .caine-player {
+    height: 70px;
   }
 }
 
 @media (max-height: 640px) {
   .caine-panel {
-    gap: 5px;
+    gap: 6px;
     padding: 8px;
   }
 
   .caine-logo {
-    width: min(78%, 330px);
-    height: clamp(64px, 12dvh, 94px);
-    margin-top: -14px;
-    margin-bottom: -34px;
-    transform: scale(1.08);
+    width: 56%;
+    margin-bottom: -4%;
   }
 
-  .caine-player {
-    height: clamp(44px, 7dvh, 60px);
-  }
-
+  .caine-release,
   .caine-grid {
-    width: 66%;
-    gap: 6px;
+    width: 88%;
+    max-width: 88%;
   }
 
   .caine-socials {
-    width: 40%;
-    gap: 6px;
+    width: 50%;
+    max-width: 50%;
+  }
+
+  .caine-player {
+    height: 60px;
   }
 }
 
 @media (max-width: 360px) {
-  .caine-page {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
   .caine-panel {
-    max-width: calc(100vw - 20px);
     padding: 8px;
   }
 
   .caine-logo {
-    width: 86%;
-    height: clamp(70px, 13.5dvh, 104px);
-    margin-bottom: -32px;
+    width: 68%;
   }
 
-  .caine-player {
-    width: 100%;
-    height: clamp(46px, 7.5dvh, 64px);
-  }
-
+  .caine-release,
   .caine-grid {
-    width: 72%;
+    width: 96%;
+    max-width: 96%;
   }
 
   .caine-socials {
-    width: 45%;
-  }
-}
-
-@media (orientation: landscape) and (max-height: 500px) {
-  .caine-panel {
-    width: min(100%, 700px);
-    max-height: calc(100dvh - 12px);
-    gap: 5px;
-    padding: 8px;
-  }
-
-  .caine-logo {
-    width: min(45%, 300px);
-    height: clamp(46px, 16dvh, 76px);
-    margin-top: -10px;
-    margin-bottom: -24px;
-    transform: scale(1.04);
+    width: 58%;
+    max-width: 58%;
   }
 
   .caine-player {
-    width: min(80%, 420px);
-    height: clamp(40px, 12dvh, 58px);
-  }
-
-  .caine-grid {
-    width: min(42%, 300px);
-    gap: 6px;
-  }
-
-  .caine-socials {
-    width: min(26%, 180px);
-    gap: 6px;
+    height: 58px;
   }
 }
