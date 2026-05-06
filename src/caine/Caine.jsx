@@ -1,4 +1,5 @@
 import './caine.css'
+import amazonMusicIcon from './amazon-music.png'
 
 const links = {
   instagram: 'https://www.instagram.com/whocaine/',
@@ -20,7 +21,7 @@ const icons = {
   soundcloud: 'https://cdn.simpleicons.org/soundcloud/FFFFFF',
   spotify: 'https://cdn.simpleicons.org/spotify/FFFFFF',
   appleMusic: 'https://cdn.simpleicons.org/applemusic/FFFFFF',
-  amazonMusic: 'https://cdn.simpleicons.org/amazonmusic/FFFFFF',
+  amazonMusic: amazonMusicIcon,
 }
 
 function LinkButton({ href, label, icon, small = false }) {

@@ -61,7 +61,7 @@
 
 .caine-grid {
   display: grid;
-  grid-template-columns: repeat(2, clamp(58px, 11vh, 78px));
+  grid-template-columns: repeat(2, clamp(144px, 27vh, 186px));
   justify-content: center;
   gap: 10px;
 }
@@ -94,7 +94,7 @@
 
 .caine-grid:not(.caine-socials) .caine-button {
   aspect-ratio: auto;
-  height: clamp(240px, 45vh, 310px);
+  height: clamp(144px, 27vh, 186px);
 }
 
 .caine-button img {
@@ -164,13 +164,13 @@
   }
 
   .caine-grid:not(.caine-socials) .caine-button {
-    height: 240px;
+    height: 144px;
   }
 }
 
 @media (max-width: 360px) {
   .caine-grid {
-    grid-template-columns: repeat(2, 54px);
+    grid-template-columns: repeat(2, 138px);
   }
 
   .caine-socials {
@@ -178,6 +178,6 @@
   }
 
   .caine-grid:not(.caine-socials) .caine-button {
-    height: 230px;
+    height: 138px;
   }
 }
