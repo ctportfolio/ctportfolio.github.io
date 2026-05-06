@@ -8,6 +8,7 @@ import WindowFrame from './components/WindowFrame'
 import { categories } from './data/categories'
 import { siteConfig } from './data/siteConfig'
 import Lifemaxxing from './lifemaxxing/Lifemaxxing'
+import Caine from './caine/Caine'
 
 function Model({ path, ...props }) {
   const { scene } = useGLTF(path)
@@ -107,6 +108,10 @@ function getInitialFocusedIndex() {
 }
 
 export default function App() {
+  if (window.location.pathname.toLowerCase().startsWith('/caine')) {
+    return <Caine />
+  }
+
   if (window.location.pathname.toLowerCase().startsWith('/lifemaxxing')) {
     return <Lifemaxxing />
   }
