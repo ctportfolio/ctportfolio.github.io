@@ -4,21 +4,33 @@ const links = {
   instagram: 'https://www.instagram.com/whocaine/',
   tiktok: 'https://www.tiktok.com/@cainekss',
   youtube: 'https://www.youtube.com/@caine2kk',
-  soundcloud: 'https://soundcloud.com/static-83801875',
+  soundcloud: 'https://on.soundcloud.com/xpLdgulT5SEyy24Ttz',
   spotify: 'https://open.spotify.com/search/Caine%20Mars%20feat%20Cope',
   appleMusic: 'https://music.apple.com/us/search?term=Caine%20Mars%20feat%20Cope',
   amazonMusic: 'https://music.amazon.com/search/Caine%20Mars%20feat%20Cope',
 }
 
-function LinkButton({ href, children, small = false }) {
+const icons = {
+  instagram: 'https://cdn.simpleicons.org/instagram/FFFFFF',
+  tiktok: 'https://cdn.simpleicons.org/tiktok/FFFFFF',
+  youtube: 'https://cdn.simpleicons.org/youtube/FFFFFF',
+  soundcloud: 'https://cdn.simpleicons.org/soundcloud/FFFFFF',
+  spotify: 'https://cdn.simpleicons.org/spotify/FFFFFF',
+  appleMusic: 'https://cdn.simpleicons.org/applemusic/FFFFFF',
+  amazonMusic: 'https://cdn.simpleicons.org/amazonmusic/FFFFFF',
+}
+
+function LinkButton({ href, label, icon, small = false }) {
   return (
     <a
       className={`caine-button${small ? ' caine-button-small' : ''}`}
       href={href}
       target="_blank"
       rel="noopener noreferrer"
+      aria-label={label}
+      title={label}
     >
-      {children}
+      <img src={icon} alt="" aria-hidden="true" />
     </a>
   )
 }
@@ -36,30 +48,24 @@ export default function Caine() {
             title="Mars feat. Cope by Caine on SoundCloud"
             scrolling="no"
             allow="autoplay"
-            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/static-83801875/mars-feat-cope&color=%23c51111&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false"
+            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/caine2/mars-feat-cope%3Fsi%3D42e50e3dabb74a6f9b1cf0e55152631d%26utm_source%3Dclipboard%26utm_medium%3Dtext%26utm_campaign%3Dsocial_sharing&color=%23c51111&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false"
           />
         </div>
 
         <nav className="caine-grid caine-socials" aria-label="Social links">
-          <LinkButton href={links.instagram} small>
-            Instagram
-          </LinkButton>
-          <LinkButton href={links.tiktok} small>
-            TikTok
-          </LinkButton>
-          <LinkButton href={links.youtube} small>
-            YouTube
-          </LinkButton>
+          <LinkButton href={links.instagram} label="Instagram" icon={icons.instagram} small />
+          <LinkButton href={links.tiktok} label="TikTok" icon={icons.tiktok} small />
+          <LinkButton href={links.youtube} label="YouTube" icon={icons.youtube} small />
         </nav>
 
         <nav className="caine-grid" aria-label="Music links">
-          <LinkButton href={links.soundcloud}>SoundCloud</LinkButton>
-          <LinkButton href={links.spotify}>Spotify</LinkButton>
+          <LinkButton href={links.soundcloud} label="SoundCloud" icon={icons.soundcloud} />
+          <LinkButton href={links.spotify} label="Spotify" icon={icons.spotify} />
         </nav>
 
         <nav className="caine-grid" aria-label="More music links">
-          <LinkButton href={links.appleMusic}>Apple Music</LinkButton>
-          <LinkButton href={links.amazonMusic}>Amazon Music</LinkButton>
+          <LinkButton href={links.appleMusic} label="Apple Music" icon={icons.appleMusic} />
+          <LinkButton href={links.amazonMusic} label="Amazon Music" icon={icons.amazonMusic} />
         </nav>
       </section>
     </main>
