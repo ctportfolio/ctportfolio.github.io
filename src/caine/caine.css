@@ -19,18 +19,8 @@ body {
 }
 
 .caine-page {
-  --page-pad-x: clamp(10px, 2.6vw, 18px);
-  --page-pad-y: clamp(6px, 1.4dvh, 14px);
-
-  --panel-width: min(100%, 500px);
-  --panel-pad: clamp(10px, 1.5dvh, 16px);
-  --panel-gap: clamp(4px, 0.8dvh, 8px);
-  --release-gap: clamp(3px, 0.6dvh, 6px);
-  --grid-gap: clamp(7px, 1dvh, 10px);
-
-  /* reduced about 33% from the original large feel */
-  --main-button-size: clamp(72px, min(23vw, 10.8dvh), 112px);
-  --social-button-size: clamp(36px, min(10vw, 5.6dvh), 48px);
+  --page-pad-x: clamp(8px, 2.5vw, 18px);
+  --page-pad-y: clamp(6px, 1.5dvh, 16px);
 
   width: 100vw;
   height: 100vh;
@@ -50,14 +40,33 @@ body {
 }
 
 .caine-panel {
-  width: var(--panel-width);
+  container-type: size;
+
+  --panel-gap: min(1.05cqh, 9px);
+  --release-gap: min(0.65cqh, 6px);
+  --grid-gap: min(1.35cqw, 10px);
+
+  --logo-width: min(62cqw, 390px);
+  --logo-height: min(17cqh, 145px);
+
+  --player-width: min(88cqw, 430px);
+  --player-height: min(10.5cqh, 96px);
+
+  --main-button-size: min(39cqw, 15.7cqh);
+  --social-button-size: min(13cqw, 6.7cqh);
+
+  width: min(100%, 520px);
+  height: calc(100dvh - (var(--page-pad-y) * 2));
   max-width: calc(100vw - (var(--page-pad-x) * 2));
   max-height: calc(100dvh - (var(--page-pad-y) * 2));
+
   display: grid;
+  grid-template-rows: auto auto auto auto auto;
   justify-items: center;
   align-content: center;
   gap: var(--panel-gap);
-  padding: var(--panel-pad);
+
+  padding: min(2.3cqh, 20px) min(4cqw, 22px);
   margin: 0 auto;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 8px;
@@ -69,11 +78,10 @@ body {
 
 .caine-logo {
   display: block;
-  width: min(88vw, 420px);
+  width: var(--logo-width);
+  height: var(--logo-height);
   max-width: 100%;
-  height: clamp(94px, 15.5dvh, 150px);
-  max-height: 17dvh;
-  margin: -10px auto -30px;
+  margin: -1.4cqh auto -3.8cqh;
   object-fit: contain;
   object-position: center bottom;
   filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.72));
@@ -86,12 +94,13 @@ body {
   align-items: center;
   gap: var(--release-gap);
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .caine-release p {
   margin: 0;
   color: rgba(255, 246, 246, 0.78);
-  font-size: clamp(0.68rem, min(1.45vw, 1.35dvh), 0.84rem);
+  font-size: min(3.7cqw, 1.55cqh, 0.86rem);
   line-height: 1;
   font-weight: 800;
   letter-spacing: 0;
@@ -101,9 +110,11 @@ body {
 
 .caine-player {
   display: block;
-  width: min(100%, 420px);
-  max-width: 100%;
-  height: clamp(54px, 8.6dvh, 86px);
+  width: var(--player-width) !important;
+  max-width: var(--player-width) !important;
+  min-width: 0 !important;
+  height: var(--player-height);
+  max-height: var(--player-height);
   margin: 0 auto;
   border: 0;
   border-radius: 8px;
@@ -114,7 +125,7 @@ body {
 
 .caine-grid {
   display: grid;
-  width: fit-content;
+  width: calc((var(--main-button-size) * 2) + var(--grid-gap));
   max-width: 100%;
   grid-template-columns: repeat(2, var(--main-button-size));
   justify-content: center;
@@ -122,9 +133,11 @@ body {
   align-items: center;
   gap: var(--grid-gap);
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .caine-socials {
+  width: calc((var(--social-button-size) * 3) + (var(--grid-gap) * 2));
   grid-template-columns: repeat(3, var(--social-button-size));
 }
 
@@ -189,12 +202,6 @@ body {
   .caine-page {
     --page-pad-x: 14px;
     --page-pad-y: max(6px, env(safe-area-inset-top), env(safe-area-inset-bottom));
-    --panel-width: min(100%, 430px);
-    --panel-pad: clamp(9px, 1.35dvh, 13px);
-    --panel-gap: clamp(4px, 0.75dvh, 7px);
-    --grid-gap: clamp(7px, 0.9dvh, 9px);
-    --main-button-size: clamp(70px, min(27vw, 10.4dvh), 104px);
-    --social-button-size: clamp(35px, min(12vw, 5.4dvh), 46px);
 
     padding: max(6px, env(safe-area-inset-top)) var(--page-pad-x) max(6px, env(safe-area-inset-bottom));
     background:
@@ -202,81 +209,93 @@ body {
       url('/images/caine/mobile.png') center / cover no-repeat fixed;
   }
 
-  .caine-logo {
-    width: min(90vw, 360px);
-    height: clamp(90px, 15dvh, 132px);
-    margin: -12px auto -34px;
+  .caine-panel {
+    width: min(100%, 430px);
+
+    --logo-width: 66cqw;
+    --logo-height: 17cqh;
+
+    --player-width: 90cqw;
+    --player-height: 10.2cqh;
+
+    --main-button-size: min(40.5cqw, 15.2cqh);
+    --social-button-size: min(13.5cqw, 6.5cqh);
+
+    --panel-gap: 0.95cqh;
+    --grid-gap: 2.3cqw;
   }
 
-  .caine-player {
-    width: min(100%, 390px);
-    height: clamp(52px, 8.2dvh, 78px);
+  .caine-logo {
+    margin: -1.5cqh auto -4.2cqh;
   }
 }
 
 @media (max-height: 740px) {
-  .caine-page {
-    --panel-pad: 8px;
-    --panel-gap: 4px;
-    --release-gap: 3px;
-    --grid-gap: 6px;
-    --main-button-size: clamp(66px, min(24vw, 9.6dvh), 96px);
-    --social-button-size: clamp(33px, min(10vw, 5dvh), 42px);
+  .caine-panel {
+    --logo-width: 65cqw;
+    --logo-height: 16cqh;
+
+    --player-height: 9.4cqh;
+
+    --main-button-size: min(40cqw, 14.2cqh);
+    --social-button-size: min(13cqw, 6.1cqh);
+
+    --panel-gap: 0.75cqh;
+    --release-gap: 0.45cqh;
+    --grid-gap: 1.9cqw;
   }
 
   .caine-logo {
-    height: clamp(78px, 13.5dvh, 112px);
-    margin: -14px auto -36px;
-  }
-
-  .caine-player {
-    height: clamp(48px, 7.6dvh, 68px);
+    margin: -1.5cqh auto -4.4cqh;
   }
 
   .caine-release p {
-    font-size: clamp(0.64rem, min(1.35vw, 1.25dvh), 0.76rem);
+    font-size: min(3.5cqw, 1.35cqh, 0.78rem);
   }
 }
 
 @media (max-height: 640px) {
-  .caine-page {
-    --page-pad-y: 5px;
-    --panel-pad: 7px;
-    --panel-gap: 4px;
-    --release-gap: 2px;
-    --grid-gap: 5px;
-    --main-button-size: clamp(62px, min(23vw, 8.8dvh), 88px);
-    --social-button-size: clamp(30px, min(9.5vw, 4.6dvh), 40px);
+  .caine-panel {
+    --logo-width: 62cqw;
+    --logo-height: 14.5cqh;
+
+    --player-height: 8.4cqh;
+
+    --main-button-size: min(39cqw, 13.2cqh);
+    --social-button-size: min(12.5cqw, 5.5cqh);
+
+    --panel-gap: 0.62cqh;
+    --release-gap: 0.35cqh;
+    --grid-gap: 1.6cqw;
+
+    padding: min(1.6cqh, 12px) min(3.4cqw, 18px);
   }
 
   .caine-logo {
-    height: clamp(68px, 12.5dvh, 96px);
-    margin: -14px auto -36px;
-  }
-
-  .caine-player {
-    height: clamp(44px, 7dvh, 60px);
+    margin: -1.4cqh auto -4.2cqh;
   }
 }
 
 @media (max-width: 360px) {
   .caine-page {
     --page-pad-x: 10px;
-    --panel-pad: 7px;
-    --panel-gap: 4px;
-    --grid-gap: 5px;
-    --main-button-size: clamp(66px, min(28vw, 10dvh), 96px);
-    --social-button-size: clamp(31px, min(12.5vw, 5.1dvh), 42px);
+  }
+
+  .caine-panel {
+    --logo-width: 68cqw;
+    --logo-height: 16cqh;
+
+    --player-width: 91cqw;
+    --player-height: 9.4cqh;
+
+    --main-button-size: min(40cqw, 14.5cqh);
+    --social-button-size: min(13.2cqw, 6cqh);
+
+    --panel-gap: 0.75cqh;
+    --grid-gap: 1.8cqw;
   }
 
   .caine-logo {
-    width: min(92vw, 315px);
-    height: clamp(74px, 13.8dvh, 104px);
-    margin: -12px auto -34px;
-  }
-
-  .caine-player {
-    width: min(100%, 340px);
-    height: clamp(46px, 7.5dvh, 64px);
+    margin: -1.3cqh auto -4cqh;
   }
 }
