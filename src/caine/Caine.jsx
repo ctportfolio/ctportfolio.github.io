@@ -10,6 +10,9 @@ const links = {
   amazonMusic: 'https://music.amazon.com/search/Caine%20Mars%20feat%20Cope',
 }
 
+const soundcloudEmbedSource =
+  'https://soundcloud.com/caine2/mars-feat-cope?si=42e50e3dabb74a6f9b1cf0e55152631d&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing'
+
 const icons = {
   instagram: 'https://cdn.simpleicons.org/instagram/FFFFFF',
   tiktok: 'https://cdn.simpleicons.org/tiktok/FFFFFF',
@@ -48,7 +51,7 @@ export default function Caine() {
             title="Mars feat. Cope by Caine on SoundCloud"
             scrolling="no"
             allow="autoplay"
-            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/caine2/mars-feat-cope%3Fsi%3D42e50e3dabb74a6f9b1cf0e55152631d%26utm_source%3Dclipboard%26utm_medium%3Dtext%26utm_campaign%3Dsocial_sharing&color=%23c51111&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false"
+            src={`https://w.soundcloud.com/player/?url=${encodeURIComponent(soundcloudEmbedSource)}&color=%23c51111&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false`}
           />
         </div>
 
