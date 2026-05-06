@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Caine official links, latest release, and music platforms.">
+    <title>Caine</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+      }
+
+      body {
+        min-height: 100vh;
+        min-height: 100dvh;
+        overflow: hidden;
+        color: #fff6f6;
+        font-family: Arial, Helvetica, sans-serif;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.52)),
+          url("assets/comp-bg.png") center / cover no-repeat fixed;
+      }
+
+      main {
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(12px, 3vh, 30px) 18px;
+      }
+
+      .panel {
+        width: min(100%, 520px);
+        display: grid;
+        gap: clamp(10px, 1.7vh, 18px);
+        padding: clamp(14px, 2.7vh, 28px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 8px;
+        background: rgba(6, 6, 6, 0.48);
+        box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
+        backdrop-filter: blur(7px);
+      }
+
+      .logo {
+        display: block;
+        width: min(78vw, 360px);
+        max-height: 20vh;
+        margin: 0 auto;
+        object-fit: contain;
+        filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.72));
+      }
+
+      .release {
+        display: grid;
+        gap: 8px;
+      }
+
+      .release p {
+        margin: 0;
+        color: rgba(255, 246, 246, 0.78);
+        font-size: clamp(0.72rem, 1.5vw, 0.86rem);
+        font-weight: 800;
+        letter-spacing: 0;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      iframe {
+        width: 100%;
+        height: clamp(88px, 13vh, 116px);
+        border: 0;
+        border-radius: 8px;
+        background: #111;
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.38);
+      }
+
+      nav {
+        display: grid;
+        grid-template-columns: repeat(2, clamp(58px, 11vh, 78px));
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .socials {
+        grid-template-columns: repeat(3, clamp(48px, 9vh, 62px));
+      }
+
+      a {
+        width: 100%;
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 8px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04)),
+          linear-gradient(135deg, rgba(197, 17, 17, 0.82), rgba(60, 6, 6, 0.84));
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+        text-decoration: none;
+        transition: transform 160ms ease, border-color 160ms ease, filter 160ms ease;
+      }
+
+      a:hover,
+      a:focus-visible {
+        border-color: rgba(255, 255, 255, 0.55);
+        filter: brightness(1.12);
+        transform: translateY(-1px);
+        outline: none;
+      }
+
+      a img {
+        display: block;
+        width: 54%;
+        height: 54%;
+        object-fit: contain;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.48));
+      }
+
+      .socials img {
+        width: 50%;
+        height: 50%;
+      }
+
+      @media (max-width: 720px) {
+        body {
+          background:
+            linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.48)),
+            url("assets/mobile.png") center / cover no-repeat fixed;
+        }
+
+        main {
+          padding: max(10px, env(safe-area-inset-top)) 14px max(10px, env(safe-area-inset-bottom));
+        }
+
+        .panel {
+          width: min(100%, 430px);
+        }
+      }
+
+      @media (max-height: 640px) {
+        main {
+          align-items: flex-start;
+          padding-top: 8px;
+          padding-bottom: 8px;
+        }
+
+        .panel {
+          gap: 8px;
+          padding: 10px;
+        }
+
+        .logo {
+          max-height: 16vh;
+        }
+
+        iframe {
+          height: 82px;
+        }
+      }
+
+      @media (max-width: 360px) {
+        nav {
+          grid-template-columns: repeat(2, 54px);
+        }
+
+        .socials {
+          grid-template-columns: repeat(3, 46px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main aria-label="Caine links">
+      <section class="panel">
+        <img class="logo" src="assets/caine-logo.png" alt="Caine">
+
+        <div class="release">
+          <p>Recent Release</p>
+          <iframe
+            title="Mars feat. Cope by Caine on SoundCloud"
+            scrolling="no"
+            allow="autoplay"
+            src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fcaine2%2Fmars-feat-cope%3Fsi%3D42e50e3dabb74a6f9b1cf0e55152631d%26utm_source%3Dclipboard%26utm_medium%3Dtext%26utm_campaign%3Dsocial_sharing&color=%23c51111&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false">
+          </iframe>
+        </div>
+
+        <nav class="socials" aria-label="Social links">
+          <a href="https://www.instagram.com/whocaine/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><img src="https://cdn.simpleicons.org/instagram/FFFFFF" alt=""></a>
+          <a href="https://www.tiktok.com/@cainekss" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><img src="https://cdn.simpleicons.org/tiktok/FFFFFF" alt=""></a>
+          <a href="https://www.youtube.com/@caine2kk" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><img src="https://cdn.simpleicons.org/youtube/FFFFFF" alt=""></a>
+        </nav>
+
+        <nav aria-label="Music links">
+          <a href="https://on.soundcloud.com/xpLdgulT5SEyy24Ttz" target="_blank" rel="noopener" aria-label="SoundCloud" title="SoundCloud"><img src="https://cdn.simpleicons.org/soundcloud/FFFFFF" alt=""></a>
+          <a href="https://open.spotify.com/search/Caine%20Mars%20feat%20Cope" target="_blank" rel="noopener" aria-label="Spotify" title="Spotify"><img src="https://cdn.simpleicons.org/spotify/FFFFFF" alt=""></a>
+        </nav>
+
+        <nav aria-label="More music links">
+          <a href="https://music.apple.com/us/search?term=Caine%20Mars%20feat%20Cope" target="_blank" rel="noopener" aria-label="Apple Music" title="Apple Music"><img src="https://cdn.simpleicons.org/applemusic/FFFFFF" alt=""></a>
+          <a href="https://music.amazon.com/search/Caine%20Mars%20feat%20Cope" target="_blank" rel="noopener" aria-label="Amazon Music" title="Amazon Music"><img src="https://cdn.simpleicons.org/amazonmusic/FFFFFF" alt=""></a>
+        </nav>
+      </section>
+    </main>
+  </body>
+</html>
