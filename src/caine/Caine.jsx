@@ -5,10 +5,10 @@ const links = {
   instagram: 'https://www.instagram.com/whocaine/',
   tiktok: 'https://www.tiktok.com/@cainekss',
   youtube: 'https://www.youtube.com/@caine2kk',
-  soundcloud: 'https://on.soundcloud.com/xpLdgulT5SEyy24Ttz',
-  spotify: 'https://open.spotify.com/search/Caine%20Mars%20feat%20Cope',
-  appleMusic: 'https://music.apple.com/us/search?term=Caine%20Mars%20feat%20Cope',
-  amazonMusic: 'https://music.amazon.com/search/Caine%20Mars%20feat%20Cope',
+  soundcloud: 'https://soundcloud.com/caine2?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+  spotify: 'https://open.spotify.com/artist/5a9UAWTi1BMCgdXVFXxmYE?si=RyYuz_YvSIW8us08D6TkxQ',
+  appleMusic: 'https://music.apple.com/us/artist/caine/1896343545',
+  amazonMusic: 'https://music.amazon.com/artists/B000QJIAZC/caine',
 }
 
 const soundcloudEmbedSource =
