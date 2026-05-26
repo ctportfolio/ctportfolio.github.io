@@ -5,6 +5,7 @@ import {
   Volume2,
   VolumeX,
   Play,
+  Pause,
   ExternalLink,
   Github,
   Search,
@@ -24,6 +25,50 @@ function getProjectVideos(project) {
   if (Array.isArray(project.videos) && project.videos.length) return project.videos
   if (project.video) return [project.video]
   return []
+}
+
+function getProjectAudios(project) {
+  if (Array.isArray(project.audios) && project.audios.length) return project.audios
+  if (project.audio) return [project.audio]
+  return []
+}
+
+function formatTime(value) {
+  if (!Number.isFinite(value)) return '0:00'
+  const minutes = Math.floor(value / 60)
+  const seconds = Math.floor(value % 60).toString().padStart(2, '0')
+  return `${minutes}:${seconds}`
+}
+
+function ProjectLinks({ links }) {
+  if (!Array.isArray(links) || !links.length) return null
+
+  const iconMap = {
+    youtube: 'https://cdn.simpleicons.org/youtube/FFFFFF',
+    spotify: 'https://cdn.simpleicons.org/spotify/FFFFFF',
+  }
+
+  return (
+    <div className="project-links">
+      {links.map((link) => (
+        <a
+          key={`${link.label}-${link.href}`}
+          href={link.href}
+          target="_blank"
+          rel="noreferrer"
+          className="project-link-button project-icon-link"
+          aria-label={link.label}
+          title={link.label}
+        >
+          {iconMap[link.type] ? (
+            <img src={iconMap[link.type]} alt="" aria-hidden="true" />
+          ) : (
+            <ExternalLink size={16} />
+          )}
+        </a>
+      ))}
+    </div>
+  )
 }
 
 function ZoomableImage({ src, alt, className = '' }) {
@@ -160,6 +205,7 @@ function ProjectBundle({ project }) {
             ) : null}
           </div>
         ) : null}
+        <ProjectLinks links={project.links} />
       </div>
 
       {media.length ? (
@@ -185,18 +231,20 @@ function PhotoGrid({ projects }) {
   return (
     <div className="photo-grid">
       {projects.map((project) => {
-        const imageSrc = project.image || (Array.isArray(project.images) ? project.images[0] : '')
+        const images = getProjectMedia(project)
 
         return (
           <div className="photo-tile" key={project.id}>
-            {imageSrc ? (
-              <div className="photo-image-shell">
-                <ZoomableImage
-                  src={imageSrc}
-                  alt={project.title || 'Photography piece'}
-                  className="project-gallery-image"
-                />
-              </div>
+            {images.length ? (
+              images.map((imageSrc, index) => (
+                <div className="photo-image-shell" key={`${project.id}-photo-${index}`}>
+                  <ZoomableImage
+                    src={imageSrc}
+                    alt={`${project.title || 'Photography piece'} ${index + 1}`}
+                    className="project-gallery-image"
+                  />
+                </div>
+              ))
             ) : (
               <div className="media-placeholder">image</div>
             )}
@@ -206,6 +254,92 @@ function PhotoGrid({ projects }) {
           </div>
         )
       })}
+    </div>
+  )
+}
+
+function AudioCard({ audio, title }) {
+  const audioRef = useRef(null)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [isMuted, setIsMuted] = useState(false)
+  const [currentTime, setCurrentTime] = useState(0)
+  const [duration, setDuration] = useState(0)
+
+  const togglePlay = () => {
+    const player = audioRef.current
+    if (!player) return
+
+    if (player.paused || player.ended) {
+      player.play()
+      setIsPlaying(true)
+    } else {
+      player.pause()
+      setIsPlaying(false)
+    }
+  }
+
+  const toggleMute = () => {
+    const player = audioRef.current
+    if (!player) return
+    player.muted = !player.muted
+    setIsMuted(player.muted)
+  }
+
+  const resetAudio = () => {
+    const player = audioRef.current
+    if (!player) return
+    player.pause()
+    player.currentTime = 0
+    setCurrentTime(0)
+    setIsPlaying(false)
+  }
+
+  const seekAudio = (event) => {
+    const player = audioRef.current
+    if (!player) return
+    const nextTime = Number(event.target.value)
+    player.currentTime = nextTime
+    setCurrentTime(nextTime)
+  }
+
+  return (
+    <div className="audio-card">
+      <audio
+        ref={audioRef}
+        src={audio}
+        preload="metadata"
+        onLoadedMetadata={() => setDuration(audioRef.current?.duration || 0)}
+        onTimeUpdate={() => setCurrentTime(audioRef.current?.currentTime || 0)}
+        onEnded={resetAudio}
+      />
+
+      <div className="audio-header">
+        <div className="project-title">{title || 'Audio'}</div>
+        <div className="audio-time">{formatTime(currentTime)} / {formatTime(duration)}</div>
+      </div>
+
+      <input
+        className="audio-progress"
+        type="range"
+        min="0"
+        max={duration || 0}
+        step="0.01"
+        value={currentTime}
+        onChange={seekAudio}
+        aria-label={`Seek ${title || 'audio'}`}
+      />
+
+      <div className="video-actions">
+        <button type="button" className="square-action" onClick={togglePlay} aria-label={isPlaying ? 'Pause audio' : 'Play audio'}>
+          {isPlaying ? <Pause size={16} fill="currentColor" /> : <Play size={16} fill="currentColor" />}
+        </button>
+        <button type="button" className="square-action" onClick={toggleMute} aria-label="Toggle mute">
+          {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+        </button>
+        <button type="button" className="square-action" onClick={resetAudio} aria-label="Restart audio">
+          <RotateCcw size={16} />
+        </button>
+      </div>
     </div>
   )
 }
@@ -283,6 +417,7 @@ function VideoCard({ project }) {
 
       {project.title ? <div className="project-title">{project.title}</div> : null}
       {project.description ? <div className="project-description">{project.description}</div> : null}
+      <ProjectLinks links={project.links} />
     </div>
   )
 }
@@ -374,6 +509,7 @@ function CreativeDirectionPane({ projects }) {
           {projects.map((project) => {
             const images = getProjectMedia(project)
             const videos = getProjectVideos(project)
+            const audios = getProjectAudios(project)
 
             return (
               <article className="creative-media-card" key={project.id}>
@@ -412,7 +548,19 @@ function CreativeDirectionPane({ projects }) {
                   </div>
                 ) : null}
 
-                {!images.length && !videos.length ? (
+                {audios.length ? (
+                  <div className="project-media-group">
+                    {audios.map((src, index) => (
+                      <AudioCard
+                        key={`${project.id}-audio-${index}`}
+                        audio={src}
+                        title={project.audioTitles?.[index] || `${project.title || 'Audio'} ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+                ) : null}
+
+                {!images.length && !videos.length && !audios.length ? (
                   <div className="media-placeholder bundled">Add images or videos in src/data/categories.js</div>
                 ) : null}
               </article>
