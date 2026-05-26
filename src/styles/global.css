@@ -752,7 +752,7 @@ a {
 
 @media (hover: none) and (pointer: coarse) {
   .ghost-nav {
-    display: none;
+    display: grid;
   }
 }
 
@@ -980,12 +980,34 @@ a {
   }
 
   .carousel-controls {
-    gap: 12px;
+    position: absolute;
+    top: 46%;
+    left: 0;
+    right: 0;
+    z-index: 8;
+    justify-content: space-between;
+    gap: 0;
+    padding: 0 14px;
+    pointer-events: none;
+    transform: translateY(-50%);
   }
 
   .ghost-nav {
-    width: 48px;
-    height: 48px;
+    width: 68px;
+    height: 68px;
+    display: grid;
+    place-items: center;
+    border: 2px solid rgba(255, 255, 255, 0.92);
+    background: rgba(0, 0, 0, 0.78);
+    color: #ffffff;
+    font-size: 2.6rem;
+    font-weight: 900;
+    line-height: 1;
+    pointer-events: auto;
+    box-shadow:
+      0 12px 30px rgba(0, 0, 0, 0.72),
+      0 0 24px rgba(255, 255, 255, 0.22);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
   }
 
   .photo-tile,

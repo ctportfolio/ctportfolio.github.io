@@ -65,10 +65,20 @@ export default function CategoryCarousel({
       </div>
 
       <div className="carousel-controls">
-        <button type="button" className="ghost-nav" onClick={() => setFocusedIndex((i) => i - 1)}>
+        <button
+          type="button"
+          className="ghost-nav ghost-nav-prev"
+          onClick={() => setFocusedIndex((i) => i - 1)}
+          aria-label="Previous category"
+        >
           ←
         </button>
-        <button type="button" className="ghost-nav" onClick={() => setFocusedIndex((i) => i + 1)}>
+        <button
+          type="button"
+          className="ghost-nav ghost-nav-next"
+          onClick={() => setFocusedIndex((i) => i + 1)}
+          aria-label="Next category"
+        >
           →
         </button>
       </div>
