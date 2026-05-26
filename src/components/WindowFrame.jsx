@@ -301,7 +301,8 @@ function AboutPane() {
   return (
     <div className="about-pane">
       <p>Cole Timlin</p>
-      <p>Photography / Editing / Design / Marketing</p>
+      <p>Creative / Management / Photography / Editing / Design / Marketing / Programming</p>
+      <p>Hi, I'm Cole. I am passionate about creating things. The site I've created here is a collection of all my art worth putting out into the world (or that hasn't been deleted). I serve as management for upcoming artist "caine" (@whocaine on instagram). If you'd like to work with me or caine, please reach out! My email is listed below, or you can direct message me on instagram, @coletimlin0 (I'm more likely to respond to DMs). Enjoy your time on my site!</p>
       <p>ctimlincontact@gmail.com</p>
     </div>
   )
